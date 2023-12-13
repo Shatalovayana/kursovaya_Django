@@ -1,0 +1,4 @@
+Django
+psycopg2
+pytils
+django-dump-load-utf8
