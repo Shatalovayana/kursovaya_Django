@@ -1,0 +1,16 @@
+{% extends 'messaging_service/base.html' %}
+{% block content %}
+<div class="col-6">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ object.title }}</h4>
+        </div>
+        <div class="card-body">
+            <p>{{ object.body }} </p>
+        </div>
+    </div>
+</div>
+<div class="card-footer">
+    Просмотры {{ object.views_count }}
+</div>
+{% endblock %}

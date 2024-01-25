@@ -1,0 +1,25 @@
+{% extends 'messaging_service/base.html' %}
+{% block content %}
+{% for object in object_list %}
+<div class="col-3">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ object.title }}</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title pricing-card-title">{{ object.body }} </h5>
+            <a type="button" href="{% url 'blog:blog-view' object.pk %}"
+               class="btn btn-lg btn-block btn-outline-primary form-control mb-2">Просмотр</a>
+            {% if perms.blog.change_blog or user == object.user %}
+            <a type="button" href="{% url 'blog:blog-edit' object.pk %}"
+               class="btn btn-lg btn-block btn-outline-primary form-control mb-2">Редактировать</a>
+            {% endif %}
+        </div>
+        <div class="card-header">
+            <h5 class="card-title pricing-card-title">{{ object.created_at }} </h5>
+            <h5 class="card-title pricing-card-title">{{ object.views_count }} </h5>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
