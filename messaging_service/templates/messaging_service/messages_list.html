@@ -1,0 +1,36 @@
+{% extends 'messaging_service/base.html' %}
+{% block content %}
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <nav class="ms-5">
+        <a class="p-2 btn btn-outline-primary" href="{% url 'messaging_service:messages-form' %}">Добавить
+            сообщение</a>
+    </nav>
+</div>
+<div class="row text-left">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Тема письма</th>
+            <th scope="col">Содержание</th>
+            <th scope="col"> </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.pk }}</td>
+            <td>{{ object.title }}</td>
+            <td>{{ object.body }}</td>
+            {% if user.is_superuser or user.is_staff or user == object.user %}
+            <td>
+                <a class="p-2 btn btn-outline-primary" href="{% url 'messaging_service:messages-edit' object.pk %}">Редактировать</a>
+                <a class="p-2 btn btn-outline-primary" href="{% url 'messaging_service:messages-delete' object.pk %}">Удалить</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
