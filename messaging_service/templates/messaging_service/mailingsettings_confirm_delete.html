@@ -1,0 +1,22 @@
+{% extends 'messaging_service/base.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>Хотите удалить рассылку? "{{ object.message }}"</p>
+                        <button type="submit" class="btn btn-danger">
+                            Подтвердить
+                        </button>
+                        <a type="button" href="{% url 'messaging_service:settings-list' %}"
+                           class="btn btn-lg btn-block btn-warning">Отмена</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
